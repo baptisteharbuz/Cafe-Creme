@@ -1,0 +1,50 @@
+/* /////////////// Nos Cafés */
+
+.nos-cafe-container {
+    height: 70vh;
+    background-color: #240E00;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.nos-cafe-container h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    padding: 2rem 0 2rem 0;
+    margin: 0;
+    text-align: center;
+    color: #FFE1CB;
+    grid-column: 1 / 4;
+}
+
+.nos-cafes h3 {
+    text-align: center;
+    color: #240E00;
+}
+
+.nos-cafes {
+    background-color: #FFE1CB;
+    border: solid #240E00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nos-cafes img {
+    width: 25vw;
+}
+
+.nos-cafes button {
+    background-color: #240E00;
+    color: #FFE1CB;
+    font-weight: 900;
+    border: solid #FFE1CB;
+    width: 10rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10vw;
+}
