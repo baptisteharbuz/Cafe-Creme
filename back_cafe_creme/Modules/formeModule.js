@@ -9,7 +9,7 @@ router.get("/:id", (req, res) => {
         res.json({ data: result })
     }).catch((err) => {
         console.log(err);
-        res.json({ message: "Je n'ai pas réussi à afficher ce label !!" })
+        res.json({ message: "Je n'ai pas réussi à afficher cette forme de café !!" })
     })
 });
 

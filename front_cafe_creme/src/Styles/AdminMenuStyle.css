@@ -1,0 +1,11 @@
+.container-menu-admin {
+
+    height: 100vh;
+    width: 30vw;
+    background-color: rgb(38, 0, 255);
+}
+
+.h1-menu-admin {
+    color: antiquewhite;
+    text-align: center;
+}

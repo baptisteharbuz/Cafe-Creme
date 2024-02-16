@@ -4,14 +4,14 @@ const conn = require('./database')
 const fetchProduitByFormeId = (id) => {
     return new Promise((resolve, reject) => {
         const sql = "SELECT " +
-            "P.PR_Img, " +
-            "PA.PA_Label, " +
-            "P.PR_Label, " +
-            "GROUP_CONCAT(DISTINCT AC.AC_Label SEPARATOR ', '), " +
-            "GROUP_CONCAT(DISTINCT SC.SC_Label SEPARATOR ', '), " +
-            "I.IN_Label, " +
-            "P.PR_Certification, " +
-            "P.PR_Prix " +
+            "P.PR_Img AS Image, " +
+            "PA.PA_Label AS Pays, " +
+            "P.PR_Label AS Produit, " +
+            "GROUP_CONCAT(DISTINCT AC.AC_Label SEPARATOR ', ') AS Arome, " +
+            "GROUP_CONCAT(DISTINCT SC.SC_Label SEPARATOR ', ') AS Saveur, " +
+            "I.IN_Label AS Intensité, " +
+            "P.PR_Certification AS Bio, " +
+            "P.PR_Prix AS Prix " +
             "FROM " +
             "Produit P " +
             "JOIN " +
@@ -33,7 +33,7 @@ const fetchProduitByFormeId = (id) => {
             "JOIN " +
             "Forme F ON F.FO_Id = P.FO_Id " +
             "WHERE " +
-            "F.FO_Id = 1 " +
+            "F.FO_Id = ? " +
             "GROUP BY " +
             "P.PR_Id, PA.PA_Label, P.PR_Label, F.FO_Label, P.PR_Description, I.IN_Label, P.PR_Certification, P.PR_Prix;";
         let query = conn.query(sql, [id], (err, result, field) => {

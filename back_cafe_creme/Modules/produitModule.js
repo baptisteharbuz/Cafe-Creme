@@ -3,6 +3,14 @@ const router = express.Router();
 const produitService = require('../Services/produitService');
 
 router.get("/", (req, res) => {
+    produitService.fetchProduit().then((result) => {
+        res.json(result)
+    }).catch(() => {
+        res.json({ message: "Une erreur est survenue !!" })
+    })
+});
+
+router.get("/nouveau", (req, res) => {
     produitService.fetchNewProduit().then((result) => {
         res.json(result)
     }).catch(() => {

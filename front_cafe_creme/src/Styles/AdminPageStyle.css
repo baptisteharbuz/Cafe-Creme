@@ -1,0 +1,22 @@
+.container-admin {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.admin-page-gauche {
+    height: 100vh;
+    width: 30vw;
+    background-color: aquamarine;
+}
+
+.admin-page-droit {
+
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(88, 137, 134);
+}
+
+.h1-admin {
+    text-align: center;
+}

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Produitservice from "../Services/ProduitService";
 // Images
-import LogoArome from "../Assets/Images/Logos/Arome-maron.svg";
-import LogoSaveur from "../Assets/Images/Logos/Saveur-maron.svg";
-import LogoGrain from "../Assets/Images/Logos/Grain-maron.svg";
+import LogoArome from "../Assets/Images/Logos/Arome-marron.svg";
+import LogoSaveur from "../Assets/Images/Logos/Saveur-marron.svg";
+import LogoGrain from "../Assets/Images/Logos/Grain-marron.svg";
 // Style
-import "../Styles/NouveauProduitStyle.css";
+import "../Styles/NouveauProduitStyle.scss";
 
 const Produit = () => {
   const [produit, setProduit] = useState({});
@@ -27,41 +27,46 @@ const Produit = () => {
   return (
     <>
       <div className="component-nouveau-produit">
-        <div className="nouveau-produit-image">
-          <img src={produit.Image} alt="Nouveau Café chez Café Crème" />
-        </div>
-        <div className="nouveau-produit-texte">
-          <h2 className="h2-pays">{produit.Pays}</h2>
-          <div className="line"></div>
-          <h2 className="h2-produit">{produit.Produit}</h2>
-          <h2 className="h2-forme">{produit.Forme}</h2>
-          <h2 className="h2-description">{produit.Description}</h2>
-          <div className="arome-container">
-            <img src={LogoArome} alt="Logo arômes" />
-            <h2 className="h2-arome">Arômes : {produit.Arome}</h2>
+        <div className="container-produit">
+          <div className="nouveau-produit-image">
+            <img src={produit.Image} alt="Nouveau Café chez Café Crème" />
           </div>
-          <div className="saveur-container">
-            <img src={LogoSaveur} alt="Logo saveur" />
-            <h2 className="h2-saveur">Saveurs : {produit.Saveur}</h2>
-          </div>
-          <div className="intensite-container">
-            <img src={LogoGrain} alt="Logo intensité du café" />
-            <h2 className="h2-intensite">Intensité : {produit.Intensite}</h2>
-          </div>
-          <div className="line"></div>
-          {produit.Bio === 1 && <h2 className="h2-bio">Certifié Bio</h2>}
-          <div className="robusta-arabica">
-            {produit.Robusta !== null && (
-              <h2 className="h2-robusta">Robusta : {produit.Robusta} %</h2>
-            )}
-            {produit.Arabica !== null && (
-              <h2 className="h2-arabica">Arabica : {produit.Arabica} %</h2>
-            )}
-          </div>
-          <div className="container-button">
-            <Link to={`/produit/${produit.Id}`}>
-              <button>Découvrir</button>
-            </Link>
+          <div className="nouveau-produit-texte">
+            <h2 className="txt-pays">{produit.Pays}</h2>
+            <div className="line-brown"></div>
+            <h3 className="txt-produit">{produit.Produit}</h3>
+            <h4 className="txt-forme">{produit.Forme}</h4>
+            <h5 className="txt-description">{produit.Description}</h5>
+            <div className="arome-container">
+              <img src={LogoArome} alt="Logo arômes" />
+              <h5 className="txt-arome">Arômes : {produit.Arome}</h5>
+            </div>
+            <div className="saveur-container">
+              <img src={LogoSaveur} alt="Logo saveur" />
+              <h5 className="txt-saveur">Saveurs : {produit.Saveur}</h5>
+            </div>
+            <div className="intensite-container">
+              <img src={LogoGrain} alt="Logo intensité du café" />
+              <h5 className="txt-intensite">Intensité : {produit.Intensite}</h5>
+            </div>
+            <div className="line-brown"></div>
+            {produit.Bio === 1 && <h5 className="txt-bio">Certifié Bio</h5>}
+            <div className="robusta-arabica">
+              {produit.Robusta !== null && (
+                <h5 className="txt-robusta">Robusta : {produit.Robusta} %</h5>
+              )}
+              {produit.Arabica !== null && (
+                <h5 className="txt-arabica">Arabica : {produit.Arabica} %</h5>
+              )}
+            </div>
+            <div className="container-button">
+              <Link
+                to={`/produit/${produit.Id}`}
+                className="link-no-decoration"
+              >
+                <button className="button-decouvrir">Découvrir</button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

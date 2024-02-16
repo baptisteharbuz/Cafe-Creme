@@ -1,0 +1,34 @@
+// COLORS
+@mixin beige-border {
+    background-color: #FFE1CB;
+    border: solid 1px #240E00;
+    color: #240E00;
+}
+
+@mixin brown-border {
+    background: linear-gradient(217deg, #240E00, #180a00 70.71%);
+    border: solid 1px #FFE1CB;
+    color: #FFE1CB;
+}
+
+@mixin beige {
+    background-color: #FFE1CB;
+    color: #240E00;
+}
+
+@mixin brown {
+    background-color: #240E00;
+    color: #FFE1CB;
+}
+
+@mixin center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin bg-center {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

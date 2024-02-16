@@ -1,15 +1,22 @@
 import axios from 'axios';
 
-function GetNewProduit() {
+function GetProduit() {
     return axios.get(`http://127.0.0.1:3000/produit/`);
 }
+
+function GetNewProduit() {
+    return axios.get(`http://127.0.0.1:3000/produit/nouveau`);
+}
+
 function GetProduitById(id) {
     return axios.get(`http://127.0.0.1:3000/produit/` + id);
 }
-
-// function SubmitReservation(reservationData) {
-//     return axios.post(`http://127.0.0.1:3000/panier`, reservationData);
-// }
+function GetCafeResultat() {
+    return axios.get(`http://127.0.0.1:3000/cafetest/`);
+}
+function SubmitCafeTest(cafe) {
+    return axios.post(`http://127.0.0.1:3000/cafetest/`, cafe);
+}
 
 // function GetSalleByReservation(reservationData) {
 //     return axios.get(`http://127.0.0.1:3000/salle`, reservationData);
@@ -23,8 +30,10 @@ function GetProduitById(id) {
 //     return axios.get(`http://127.0.0.1:3000/panier/total/` + id_utilisateur);
 // }
 export default {
+    GetProduit,
     GetNewProduit,
-    GetProduitById
-    // DeletePanier,
+    GetProduitById,
+    GetCafeResultat,
+    SubmitCafeTest
     // GetTotal
 }
