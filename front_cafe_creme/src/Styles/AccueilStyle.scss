@@ -1,18 +1,9 @@
-@import '../Styles/FonctionStyle.scss';
+@import '../Styles/BaseStyles/FonctionStyle.scss';
 
 /* /////////////// Accueil */
 body {
     background-color: #FFE1CB;
 }
-
-Link {
-    text-decoration: none;
-}
-
-button {
-    text-decoration: none;
-}
-
 
 .fullscreen-video {
     width: 100vw;
@@ -33,6 +24,7 @@ button {
     margin: auto;
     color: #240E00;
     font-weight: 800;
+    font-size: 4rem;
 }
 
 .img-accueil {
@@ -51,31 +43,32 @@ button {
     flex-direction: column;
     height: 60vh;
     text-align: center;
+
+    h1 {
+        color: #FFE1CB;
+        width: 27rem;
+        margin-bottom: 20vh;
+    }
+
+    button {
+        @include beige-border;
+        font-weight: 900;
+        width: 10rem;
+        height: 2rem;
+        @include center;
+        border-radius: 10vw;
+    }
 }
 
-.jeux-container h2 {
+
+.nos-cafe-container h1 {
     color: #FFE1CB;
-    width: 27rem;
-    margin-bottom: 20vh;
 }
-
-.jeux-container button {
-    @include beige-border;
-    font-weight: 900;
-    width: 10rem;
-    height: 2rem;
-    @include center;
-    border-radius: 10vw;
-}
-
-// .nos-cafe-container h2 {
-//     text-transform: uppercase;
-// }
 
 
 @media (max-width: 768px) {
     .accueil-container {
-        // height: 80vh;
+        height: 60vh;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(2, 1fr);
@@ -86,6 +79,7 @@ button {
         grid-column: 1 / 2;
         margin: auto;
         color: #240E00;
+        font-size: 2.5rem;
     }
 
     .img-accueil {
@@ -96,7 +90,7 @@ button {
         grid-column: 1 / 2;
     }
 
-    .jeux-container h2 {
+    .jeux-container h1 {
         width: 20rem;
     }
 

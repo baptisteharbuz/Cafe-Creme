@@ -1,0 +1,141 @@
+@import '../BaseStyles/FonctionStyle.scss';
+
+// @media (min-width: 1000px) {
+.navbar {
+    // position: relative;
+    // top: 0;
+    // width: 100vw;
+    // background-color: #FFE1CB;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    padding: 1rem 0 1rem 0;
+    height: 5rem;
+    z-index: 10;
+}
+
+.header-gauche {}
+
+
+.logo-header-beige,
+.logo-cafe-creme-beige {
+    display: none;
+}
+
+.logo-header-marron {
+    display: block;
+    width: 2rem;
+}
+
+.logo-cafe-creme-marron {
+    display: block;
+    padding-left: 3vw;
+    width: 6rem;
+}
+
+.header-droit {}
+
+.navbar ul {
+    // padding-bottom: 1rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.navbar li {
+    padding-right: 3vw;
+    list-style: none;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #240E00;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.container-panier-header {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+
+@media (min-width: 769px) {
+    .panier-quantite {
+        margin-left: 4px;
+        @include brown-border;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        @include center;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        width: 100vw;
+        height: 5rem;
+        padding: 0;
+        margin: 0;
+        background-color: #240E00;
+    }
+
+    .header-droit {
+        height: 100%;
+        @include center;
+    }
+
+    .navbar ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100vw;
+        height: 100%;
+        padding: 0;
+    }
+
+    .navbar li {
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        @include center;
+    }
+
+    .navbar a {
+        color: #FFE1CB;
+    }
+
+    ul .hide-accueil {
+        display: none;
+    }
+
+    .logo-header-beige {
+        display: block;
+        width: 2rem;
+    }
+
+    .logo-cafe-creme-marron,
+    .logo-header-marron {
+        display: none;
+    }
+
+    .logo-cafe-creme-beige {
+        display: block;
+        width: 4rem;
+    }
+
+    .panier-quantite {
+        @include beige-border;
+        margin-left: 4px;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        @include center;
+        font-size: 12px;
+    }
+}

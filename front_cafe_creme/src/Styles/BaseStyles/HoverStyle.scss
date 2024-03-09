@@ -1,0 +1,30 @@
+button {
+    transition: transform .2s;
+}
+
+button:hover {
+    transform: scale(105%);
+}
+
+button:active {}
+
+input {
+    transition: transform .2s;
+}
+
+input:hover {
+    transform: scale(105%);
+}
+
+#card {
+    transition: transform .2s;
+}
+
+#card:hover {}
+
+
+.nos-cafes:hover {
+    box-shadow: 0 0 11px rgb(33, 33, 33);
+    transform: scale(102%);
+
+}

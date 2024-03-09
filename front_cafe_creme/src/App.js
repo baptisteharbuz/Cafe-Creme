@@ -4,26 +4,26 @@ import { ToastContainer } from 'react-toastify';
 import AuthContext from '../src/Context/AuthContext';
 import { PanierProvider } from './Context/PanierContext';
 // Components
-import Header from "./Components/HeaderComponent";
-import Footer from "./Components/FooterComponent";
+import Header from "./Components/BodyComponents/HeaderComponent";
+import Footer from "./Components/BodyComponents/FooterComponent";
 // Pages
 import Accueil from "./Pages/AccueilPage";
-import ProduitDetail from "./Pages/ProduitDetailPage";
-import NosCafes from "./Pages/NosCafesPage";
-import CafeTest from "./Pages/CafeTestPage"
-import Connexion from "./Pages/ConnexionPage";
-import Inscription from "./Pages/InscriptionPage";
-import Admin from "./Pages/AdminPage";
-import Profil from "./Pages/ProfilPage";
-import Panier from "./Pages/PanierPage";
+import ProduitDetail from "./Pages/ProduitPages/ProduitDetailPage";
+import NosCafes from "./Pages/ProduitPages/NosCafesPage";
+import CafeTest from "./Pages/ProduitPages/CafeTestPage"
+import Connexion from "./Pages/UtilisateurPages/ConnexionPage";
+import Inscription from "./Pages/UtilisateurPages/InscriptionPage";
+// import Admin from "./Pages/AdminPage";
+import Profil from "./Pages/UtilisateurPages/ProfilPage";
+import Panier from "./Pages/UtilisateurPages/PanierPage";
 import Premiere from "./Pages/PremierePage"
 // import CafeMoulu from "./Pages/CafeMouluPage";
 // import Capsule from "./Pages/CapsulePage";
 // Styles
 import 'react-toastify/dist/ReactToastify.css';
-import './Styles/TexteStyle.scss'
+import './Styles/BaseStyles/TexteStyle.scss'
 import ScrollToTop from "./Components/ScrollToTopComponent";
-import './Styles/HoverStyle.scss'
+import './Styles/BaseStyles/HoverStyle.scss'
 
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
               <Route path={"/cafetest"} element={<CafeTest />} />
               <Route path={"/connexion"} element={<Connexion />} />
               <Route path={"/inscription"} element={<Inscription />} />
-              <Route path={"/admin"} element={<Admin />} />
+              {/* <Route path={"/admin"} element={<Admin />} /> */}
               <Route path={"/profil"} element={<Profil />} />
               <Route path={"/panier"} element={<Panier />} />
             </Routes>

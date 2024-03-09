@@ -1,0 +1,48 @@
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100vw;
+    height: 5rem;
+    background-color: #240E00;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0 1rem 0;
+}
+
+
+
+.logo-cafe-creme {
+    padding-left: 3vw;
+    width: 6rem;
+}
+
+/* .header-droit {}
+
+.navbar ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-header {
+    width: 2rem;
+}
+
+.navbar li {
+    padding-right: 3vw;
+    list-style: none;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #240E00;
+    font-size: 1rem;
+    font-weight: bold;
+} */
+
+@media (max-width: 768px) {
+    .footer {
+        display: none;
+    }
+}

@@ -1,0 +1,179 @@
+@import '../BaseStyles/FonctionStyle.scss';
+
+.container-nos-cafes {
+    background-image: url(../../Assets/Images/AdobeStock_668439828_resultat.webp);
+    @include bg-center;
+    background-attachment: fixed;
+    // margin-top: 5rem;
+    // padding: 5rem 0 5rem;
+}
+
+.container-filtre-produit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* flex-wrap: wrap; */
+}
+
+
+.container-produit-list {
+    padding: 2vw;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+.button-nos-cafes-container {
+    @include center;
+
+    button {
+        margin-top: 1rem;
+        @include brown-border;
+        font-weight: 900;
+        border-radius: 10vw;
+        width: 10rem;
+        padding: 5px 20px;
+    }
+}
+
+.container-title-nos-cafes {
+    margin: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.387), rgba(0, 0, 0, 0.392)), url(../../Assets/Images/coffee-texture-background_resultat.webp);
+    @include bg-center;
+    color: #FFE1CB;
+    width: 100%;
+    height: 10rem;
+    @include center;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+    h1 {
+        margin: 0;
+    }
+
+}
+
+.card-produit {
+    background-color: #ffdac0 !important;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////// */
+@media (max-width: 1100px) {
+    .container-filtre-produit {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container-filtre {
+        width: 90%;
+        height: 10rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        top: 0;
+        margin-bottom: 2rem;
+    }
+
+    // .filtres {
+    //     display: flex;
+    //     flex-direction: row;
+    //     justify-content: space-around;
+    //     padding: 0;
+    // }
+
+
+    .container-produit-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card-produit {
+        // height: 15rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .container-produit-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container-nos-cafes {
+        margin-top: 0;
+        padding: 0 0 10rem 0;
+    }
+
+    .container-produit-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.card-produit {
+    // width: 20rem;
+    border: solid 1px #240E00;
+    border-radius: 0.5rem;
+    padding: 1vw;
+    text-align: center;
+    background-color: #FFE1CB;
+    transition: transform .2s;
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        color: #240E00;
+        margin: 0;
+        padding: 0.4rem;
+    }
+
+    h2,
+    h3,
+    h5,
+    p {
+        font-weight: 800;
+    }
+}
+
+.img-produit-list {
+    height: auto;
+    width: 100%;
+    transition: transform .2s;
+}
+
+.container-decouvrir-ajouter-panier {
+    @include center;
+    justify-content: space-around;
+
+    button {
+        margin: 0;
+        @include brown-border;
+        font-weight: 900;
+        border-radius: 10vw;
+    }
+
+    img {
+        width: 2rem;
+        height: auto;
+    }
+}
+
+
+.card-produit:hover {
+    transform: scale(102%);
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.card-produit:hover .img-produit-list {
+    transform: scale(102%);
+}
+
+.ajouter-panier-button {}

@@ -29,11 +29,19 @@ function SubmitCafeTest(cafe) {
 // function GetTotal(id_utilisateur) {
 //     return axios.get(`http://127.0.0.1:3000/panier/total/` + id_utilisateur);
 // }
+function GetAromes() {
+    return axios.get(`http://127.0.0.1:3000/aromes`);
+}
+function GetSaveurs() {
+    return axios.get(`http://127.0.0.1:3000/saveurs`);
+}
+
 export default {
     GetProduit,
     GetNewProduit,
     GetProduitById,
     GetCafeResultat,
-    SubmitCafeTest
-    // GetTotal
+    SubmitCafeTest,
+    GetAromes,
+    GetSaveurs
 }

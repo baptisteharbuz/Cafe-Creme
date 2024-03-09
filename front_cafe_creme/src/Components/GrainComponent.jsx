@@ -16,7 +16,7 @@ const Rain = ({ count = 50 }) => {
         duration: 2 + Math.random() * 7,
       };
     });
-  
+
     setIcons(newIcons);
   }, [count]);
 
@@ -24,7 +24,7 @@ const Rain = ({ count = 50 }) => {
     <div className="rain-container">
       {icons.map((icon) => (
         <img
-        className='rain-icons'
+          className='rain-icons'
           key={icon.id}
           src={Grain}
           style={{

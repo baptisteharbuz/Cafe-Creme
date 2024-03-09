@@ -29,25 +29,25 @@ router.get("/:id", (req, res) => {
     })
 })
 
-router.post("/", (req, res) => {
-    const data = req.body;
-    produitService.addProduit(data).then((result) => {
-        res.json({ data: result[0] })
-    }).catch((err) => {
-        console.log(err)
-        res.json({ message: "Une erreur est survenue !!" })
-    })
-})
+// router.post("/", (req, res) => {
+//     const data = req.body;
+//     produitService.addProduit(data).then((result) => {
+//         res.json({ data: result[0] })
+//     }).catch((err) => {
+//         console.log(err)
+//         res.json({ message: "Une erreur est survenue !!" })
+//     })
+// })
 
-router.delete("/:id", (req, res) => {
-    const currentId = req.params.id;
-    produitService.deleteProduit(currentId).then((result) => {
-        res.json({ message: "Le produit N°" + currentId + " à bien été supprimé" })
-    }).catch((err) => {
-        console.log(err)
-        res.json({ message: "Une erreur est survenue !!" })
-    })
-})
+// router.delete("/:id", (req, res) => {
+//     const currentId = req.params.id;
+//     produitService.deleteProduit(currentId).then((result) => {
+//         res.json({ message: "Le produit N°" + currentId + " à bien été supprimé" })
+//     }).catch((err) => {
+//         console.log(err)
+//         res.json({ message: "Une erreur est survenue !!" })
+//     })
+// })
 
 router.patch("/", (req, res) => {
     const data = req.body;
@@ -58,5 +58,9 @@ router.patch("/", (req, res) => {
         res.json({ message: "Une erreur est survenue !!" })
     })
 })
+
+
+
+
 
 module.exports = router;

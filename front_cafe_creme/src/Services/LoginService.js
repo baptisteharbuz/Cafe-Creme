@@ -1,19 +1,12 @@
 import axios from 'axios';
-
-// function fetchUtilisateur() {
-//   return axios.get("http://127.0.0.1:3000/utilisateur");
-// }
+import bcrypt from "bcryptjs";
 
 function fetchUtilisateurById(id_utilisateur) {
   return axios.get(`http://127.0.0.1:3000/utilisateur/${id_utilisateur}`);
 }
 
-function addUtilisateur(utilisateur, recaptchaToken) {
-  const payload = {
-    ...utilisateur,
-    recaptchaToken: recaptchaToken
-  };
-  return axios.post("http://127.0.0.1:3000/utilisateur/inscription", payload, {
+function addUtilisateur(utilisateur) {
+  return axios.post("http://127.0.0.1:3000/utilisateur/inscription", utilisateur, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -47,22 +40,27 @@ function deleteUtilisateur(id_utilisateur) {
 }
 
 function modifierUtilisateur(id_utilisateur, userData) {
+  const salt = bcrypt.genSaltSync(10);
+  // Hachage du nouveau mot de passe s'il est présent
+  if (userData.hasOwnProperty("MotDePasse")) {
+
+    userData.MotDePasse = bcrypt.hash(userData.MotDePasse, salt);
+  }
+
   return axios.put(`http://127.0.0.1:3000/utilisateur/modification/${id_utilisateur}`, userData, {
     headers: {
       "Content-Type": "application/json",
     },
-  })
-
-  // .then(response => response.data)
-  // .catch(error => {
-  //   console.error('Erreur lors de la modification de l’utilisateur', error);
-  //   throw error;
-  // });
+  });
 }
 
 function modifierMotDePasse(id_utilisateur, nouveauMotDePasse) {
+  // Hachage du nouveau mot de passe
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hash(nouveauMotDePasse, salt);
+
   return axios.put(`http://127.0.0.1:3000/utilisateur/changerMotDePasse/${id_utilisateur}`, {
-    nouveauMotDePasse: nouveauMotDePasse
+    nouveauMotDePasse: hashedPassword
   })
     .then(response => response.data)
     .catch(error => {
@@ -71,10 +69,7 @@ function modifierMotDePasse(id_utilisateur, nouveauMotDePasse) {
     });
 }
 
-
-
 export default {
-  // fetchUtilisateur,
   fetchUtilisateurById,
   addUtilisateur,
   login,

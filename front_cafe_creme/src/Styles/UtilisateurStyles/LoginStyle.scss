@@ -1,0 +1,169 @@
+@import '../BaseStyles/FonctionStyle.scss';
+
+.login-container {
+    background-image: url(../../Assets/Images/AdobeStock_281504290.jpeg);
+    @include bg-center;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.logo-login {
+    @include center;
+}
+
+.logo-login img {
+    width: 30vw
+}
+
+.card-inscription-container,
+.card-connexion-container {
+    // background-color: #240E00;
+    // box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    background: rgba(36, 14, 0, 0.507);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+
+    box-shadow: rgba(0, 0, 0, 0.307) 0px 50px 100px -20px, rgba(0, 0, 0, 0.318) 0px 30px 60px -30px, rgba(0, 0, 0, 0.172) 0px -2px 6px 0px inset;
+    @include center;
+}
+
+.card-connexion-container {
+    grid-column: 2;
+}
+
+.card-inscription-container {
+    grid-column: 1;
+}
+
+.card {
+    color: #FFE1CB;
+    height: 70vh;
+    width: 40vw;
+    @include center;
+    flex-direction: column;
+}
+
+.button-login {
+    @include beige-border;
+    font-weight: 900;
+    border-radius: 10vw;
+    width: 10rem;
+    height: 2rem;
+    margin: 0.5rem;
+}
+
+form {
+    @include center;
+    flex-direction: column;
+}
+
+input {
+    background-color: #FFE1CB;
+    border: none;
+    width: 30vw;
+    height: 2rem;
+    margin: 1rem;
+}
+
+input:hover {
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.card button:hover {
+    background-color: #FFE1CB;
+    color: #240E00;
+
+}
+
+.label-eyes {
+    position: relative;
+}
+
+.label-eyes input {
+    font-size: 1em;
+    color: #f9f9f9;
+    background: transparent;
+    padding: 1rem 1.2rem;
+    width: 350px;
+    border-radius: 5px;
+    border: 2px solid #7a7a7a;
+    transition: all 0.2s;
+}
+
+.label-eyes input:focus {
+    border-color: #ff4754
+}
+
+.label-eyes .password-icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 20px;
+    color: #f9f9f9;
+    transition: all 0.2s;
+}
+
+.label-eyes .password-icon:hover {
+    cursor: pointer;
+    color: #ff4754;
+}
+
+.label-eyes .password-icon .feather-eye-off {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        @include center;
+    }
+
+    .logo-login img {
+        display: none;
+    }
+
+    .card-inscription-container,
+    .card-connexion-container {
+        position: relative;
+        background-color: #240E00;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        @include center;
+        width: 20rem;
+        border-radius: 1rem;
+    }
+
+    .logo-background {
+        background-image: url("../../Assets//Images/Logos/Logo-café-crème-beige.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.1;
+        mix-blend-mode: hard-light
+    }
+
+    .card-connexion-container {}
+
+    .card-inscription-container {}
+
+    input {
+        // width: 160%;
+        z-index: 1;
+    }
+
+
+    .button-login {
+        z-index: 1;
+    }
+}

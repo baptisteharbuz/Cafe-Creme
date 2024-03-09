@@ -1,0 +1,86 @@
+@import '../BaseStyles/FonctionStyle.scss';
+
+/* /////////////// Nos Cafés */
+.section-block-nos-cafes {
+    display: flex;
+    flex-direction: row;
+}
+
+.nos-cafe-container {
+    // background-color: #240E00;
+    background: linear-gradient(#240E00, #0f0600);
+    display: grid;
+
+    h2 {
+        font-weight: 800;
+        padding: 2rem 0 2rem 0;
+        margin: 0;
+        text-align: center;
+        color: #FFE1CB;
+        grid-column: 1 / 4;
+    }
+}
+
+
+.nos-cafes {
+    @include beige-border;
+    @include center;
+    flex-direction: column;
+    padding-bottom: 5vh;
+    width: 33vw;
+    transition: transform .2s;
+
+    h2 {
+        text-align: center;
+        color: #240E00;
+        font-weight: 800;
+    }
+
+    img {
+        width: 25vw;
+    }
+
+    button {
+        @include brown-border;
+        font-weight: 900;
+        border-radius: 10vw;
+        width: 12rem;
+        height: 3rem;
+        padding: 1rem;
+        @include center;
+    }
+
+}
+
+
+.link-no-decoration {
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+
+    .section-block-nos-cafes {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nos-cafe-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nos-cafes img {
+        width: 15rem;
+    }
+
+    .nos-cafes {
+        @include beige-border;
+        @include center;
+        width: 15rem;
+        margin: 1rem;
+        padding-bottom: 5vh;
+        border-radius: 1rem;
+    }
+}
