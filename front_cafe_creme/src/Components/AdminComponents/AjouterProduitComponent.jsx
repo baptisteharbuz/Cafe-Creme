@@ -259,3 +259,23 @@ const AjouterProduitModal = ({ isOpen, onClose }) => {
 };
 
 export default AjouterProduitModal;
+
+
+
+
+
+
+
+// import Modal from 'react-modal';
+//         return (
+//             <Modal isOpen={isOpen} onRequestClose={onClose}
+//                 className="modal-container"
+//                 overlayClassName="modal-overlay">
+//                 <h2>Ajouter un nouveau produit</h2>
+//                 <form onSubmit={ajouterProduit}>
+//                     <button type="submit">Ajouter</button>
+//                 </form>
+//             </Modal>
+//         );
+
+// export default AjouterProduitModal;

@@ -18,13 +18,13 @@ const fetchResultatTest = (cafe) => {
     FROM 
         Produit P
     JOIN 
-        Posseder Po ON P.PR_Id = Po.PR_Id
+        Produit_Arome_ Po ON P.PR_Id = Po.PR_Id
     JOIN 
         Arome A ON Po.AR_Id = A.AR_Id
     JOIN
         Arome_Categorie AC ON A.AC_Id = AC.AC_Id
     JOIN 
-        Renfermer R ON P.PR_Id = R.PR_Id
+        Produit_Saveur_ R ON P.PR_Id = R.PR_Id
     JOIN 
         Saveur S ON R.SA_Id = S.SA_Id
     JOIN

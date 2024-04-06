@@ -1,77 +1,71 @@
-import axios from 'axios';
-import bcrypt from "bcryptjs";
+import axios from '../Services/AxiosConfig';
 
-function fetchUtilisateurById(id_utilisateur) {
-  return axios.get(`http://127.0.0.1:3000/utilisateur/${id_utilisateur}`);
-}
+const fetchUtilisateurById = (id_utilisateur) => {
+  return axios.get(`${process.env.REACT_APP_API_URL}/utilisateur/${id_utilisateur}`);
+};
 
-function addUtilisateur(utilisateur) {
-  return axios.post("http://127.0.0.1:3000/utilisateur/inscription", utilisateur, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-}
-
-function login(utilisateur) {
-  return axios.post("http://127.0.0.1:3000/utilisateur/", utilisateur, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-}
-
-function logout() {
-  return axios.post("http://127.0.0.1:3000/utilisateur/logout")
-    .then(response => response.data)
-    .catch(error => {
-      console.error('Erreur lors de la déconnexion', error);
-      throw error;
-    });
-}
-
-function deleteUtilisateur(id_utilisateur) {
-  return axios.delete(`http://127.0.0.1:3000/utilisateur/${id_utilisateur}`)
-    .then(response => response.data)
-    .catch(error => {
-      console.error('Erreur lors de la suppression de l’utilisateur', error);
-      throw error;
-    });
-}
-
-function modifierUtilisateur(id_utilisateur, userData) {
-  const salt = bcrypt.genSaltSync(10);
-  // Hachage du nouveau mot de passe s'il est présent
-  if (userData.hasOwnProperty("MotDePasse")) {
-
-    userData.MotDePasse = bcrypt.hash(userData.MotDePasse, salt);
+const register = async (utilisateur) => {
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/utilisateur/register`, utilisateur);
+    return { data: response.data, error: null };
+  } catch (error) {
+    console.error('Erreur lors de l’ajout d’un utilisateur', error);
+    return { data: null, error: error.response };
   }
+};
 
-  return axios.put(`http://127.0.0.1:3000/utilisateur/modification/${id_utilisateur}`, userData, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-}
 
-function modifierMotDePasse(id_utilisateur, nouveauMotDePasse) {
-  // Hachage du nouveau mot de passe
-  const salt = bcrypt.genSaltSync(10);
-  const hashedPassword = bcrypt.hash(nouveauMotDePasse, salt);
+const login = async (utilisateur) => {
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/utilisateur/login`, utilisateur);
+    localStorage.setItem('token', response.data.token);
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de la connexion', error);
+    throw error;
+  }
+};
 
-  return axios.put(`http://127.0.0.1:3000/utilisateur/changerMotDePasse/${id_utilisateur}`, {
-    nouveauMotDePasse: hashedPassword
-  })
-    .then(response => response.data)
-    .catch(error => {
-      console.error('Erreur lors de la modification du mot de passe de l’utilisateur', error);
-      throw error;
+const logout = () => {
+  localStorage.removeItem('token');
+  return axios.post(`${process.env.REACT_APP_API_URL}/utilisateur/logout`);
+};
+
+const deleteUtilisateur = async (id_utilisateur) => {
+  try {
+    const response = await axios.delete(`${process.env.REACT_APP_API_URL}/utilisateur/${id_utilisateur}`);
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de la suppression de l’utilisateur', error);
+    throw error;
+  }
+};
+
+const modifierUtilisateur = async (id_utilisateur, userData) => {
+  try {
+    const response = await axios.put(`${process.env.REACT_APP_API_URL}/utilisateur/modification/${id_utilisateur}`, userData);
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de la modification de l’utilisateur', error);
+    throw error;
+  }
+};
+
+const modifierMotDePasse = async (id_utilisateur, nouveauMotDePasse) => {
+  try {
+    const response = await axios.put(`${process.env.REACT_APP_API_URL}/utilisateur/changerMotDePasse/${id_utilisateur}`, {
+      nouveauMotDePasse
     });
-}
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de la modification du mot de passe', error);
+    throw error;
+  }
+};
 
 export default {
   fetchUtilisateurById,
-  addUtilisateur,
+  register,
   login,
   logout,
   deleteUtilisateur,

@@ -18,7 +18,7 @@ const CafeTest = () => {
   const SubmitCafeTest = async () => {
     try {
       const response = await ProduitService.SubmitCafeTest(cafe);
-      setResultat(response.data);
+      setResultat(response);
     } catch (e) {
       console.log(e);
     }

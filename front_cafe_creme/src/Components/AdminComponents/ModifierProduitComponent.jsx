@@ -114,9 +114,9 @@ const ModifierProduitComponent = ({ isOpen, onClose, produit }) => {
             PR_Degustation: degustation,
             PR_Preparation: preparation,
             PR_Resume: resume,
-            PA_Id: paysIdMap[pays], // Utilisation du mappage pour convertir le label en ID
-            FO_Id: formeIdMap[forme], // Idem
-            IN_Id: intensiteIdMap[intensite], // Idem
+            PA_Id: paysIdMap[pays],
+            FO_Id: formeIdMap[forme],
+            IN_Id: intensiteIdMap[intensite],
             nouveauxAromes: aromesChoisis,
             nouvellesSaveurs: saveursChoisis,
         };
@@ -205,18 +205,21 @@ const ModifierProduitComponent = ({ isOpen, onClose, produit }) => {
                 <div className="form-group">
                     <label>Arômes:</label>
                     <div className="checkboxes-container">
-                        {dataBaseAromes.map((arome, index) => (
-                            <div key={index} className="form-group-checkbox">
-                                <input
-                                    type="checkbox"
-                                    id={`arome-${arome.AR_Id}`}
-                                    value={arome.AR_Id}
-                                    checked={aromesChoisis.includes(arome.AR_Id)}
-                                    onChange={() => handleAromeChange(arome.AR_Id)}
-                                />
-                                <label htmlFor={`arome-${arome.AR_Id}`}>{arome.AR_Label}</label>
-                            </div>
-                        ))}
+                        {dataBaseAromes.map((arome, index) => {
+                            console.log(produit)
+                            return (
+                                <div key={index} className="form-group-checkbox">
+                                    <input
+                                        type="checkbox"
+                                        id={`arome-${arome.AR_Id}`}
+                                        value={produit.arome}
+                                        checked={aromesChoisis.includes(arome.AR_Id)}
+                                        onChange={() => handleAromeChange(arome.AR_Id)}
+                                    />
+                                    <label htmlFor={`arome-${arome.AR_Id}`}>{arome.AR_Label}</label>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
                 <div className="form-group">

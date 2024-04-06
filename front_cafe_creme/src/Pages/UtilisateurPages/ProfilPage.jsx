@@ -12,14 +12,13 @@ import VerifyPasswordModal from "../../Components/UtilisateurComponents/Password
 import ChangePasswordModal from "../../Components/UtilisateurComponents/ChangePasswordComponent";
 
 const Profil = () => {
-  // Utilisation de useContext pour récupérer les données d'authentification
   const { setIsAuthenticated, user, setUser } = useContext(AuthContext);
   // Gestion du panier
   const { resetPanier } = usePanier();
   // Navigation
   const navigate = useNavigate();
   // État local pour les modifications d'un utilisateur
-  const [utilisateur, setUtilisateur] = useState({ ...user, motDePasseActuel: "" });
+  const [utilisateur, setUtilisateur] = useState({ ...user, actualPassword: "" });
   // État des modales
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showPasswordVerification, setShowPasswordVerification] = useState(false);
@@ -38,17 +37,17 @@ const Profil = () => {
   const handleModification = async (e) => {
     e.preventDefault();
 
-    if (utilisateur.motDePasseActuel === '') {
+    if (utilisateur.actualPassword === '') {
       toast.error("Veuillez entrer votre mot de passe actuel pour confirmer les modifications.");
       return;
     }
 
     // Hachage du mot de passe avant l'envoi
     const salt = bcrypt.genSaltSync(10);
-    const hashedPassword = await bcrypt.hash(utilisateur.motDePasseActuel, salt);
-    setUtilisateur(prevState => ({ ...prevState, motDePasseActuel: hashedPassword }));
+    const hashedPassword = await bcrypt.hash(utilisateur.actualPassword, salt);
+    setUtilisateur(prevState => ({ ...prevState, actualPassword: hashedPassword }));
 
-    if (utilisateur.motDePasseActuel !== user.UT_MotDePasse) {
+    if (utilisateur.actualPassword !== user.UT_MotDePasse) {
       toast.error("Mot de passe incorrect.");
       return;
     }
@@ -80,7 +79,7 @@ const Profil = () => {
   const handleDeconnexion = () => {
     setIsAuthenticated(false);
     resetPanier();
-    navigate("/connexion");
+    navigate("/login");
   };
 
   const handleSuppression = async () => {
@@ -92,7 +91,7 @@ const Profil = () => {
       await LoginService.deleteUtilisateur(user.UT_Id);
       toast.success(`${user.UT_Nom} Votre profil a bien été supprimé`);
       setIsAuthenticated(false);
-      navigate("/connexion");
+      navigate("/login");
     } catch (error) {
       toast.error("Erreur lors de la suppression du profil.");
     }
@@ -130,7 +129,7 @@ const Profil = () => {
               <input type="text" id="nom" name="Nom" required onChange={(e) => setNom(e.target.value)} value={nom} />
               <input type="text" id="prenom" name="Prenom" required onChange={(e) => setPrenom(e.target.value)} value={prenom} />
               <input type="email" id="email" name="Mail" required onChange={(e) => setMail(e.target.value)} value={mail} />
-              <input type="password" id="password" name="motDePasseActuel" placeholder="Mot de passe actuel" onChange={handleChange} value={utilisateur.motDePasseActuel} />
+              <input type="password" id="password" name="actualPassword" placeholder="Mot de passe actuel" onChange={handleChange} value={utilisateur.actualPassword} />
               <button type="submit" >Valider les changements</button>
             </form>
             <button className="button-password-change" onClick={() => setShowPasswordVerification(true)}>Changer de mot de passe</button>

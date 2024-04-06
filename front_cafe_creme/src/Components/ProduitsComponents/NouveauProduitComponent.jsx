@@ -15,7 +15,7 @@ const Produit = () => {
     const fetchNewProduit = async () => {
       try {
         const response = await Produitservice.GetNewProduit();
-        setProduit(response.data[0]);
+        setProduit(response[0]);
       } catch (e) {
         console.log(e);
       }

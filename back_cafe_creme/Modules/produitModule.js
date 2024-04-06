@@ -10,6 +10,9 @@ router.get("/", (req, res) => {
     })
 });
 
+module.exports = router;
+
+
 router.get("/nouveau", (req, res) => {
     produitService.fetchNewProduit().then((result) => {
         res.json(result)

@@ -1,25 +1,15 @@
-import axios from 'axios';
+import axios from '../Services/AxiosConfig';
 
-function GetProduitByFormeId(id) {
-    return axios.get(`http://127.0.0.1:3000/forme/` + id);
-}
-// function SubmitReservation(reservationData) {
-//     return axios.post(`http://127.0.0.1:3000/panier`, reservationData);
-// }
+const GetProduitByFormeId = async (id) => {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/forme/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error(`Erreur lors de la récupération des produits`, error);
+        throw error;
+    }
+};
 
-// function GetSalleByReservation(reservationData) {
-//     return axios.get(`http://127.0.0.1:3000/salle`, reservationData);
-// }
-
-// function DeletePanier(id_salle) {
-//     return axios.delete(`http://127.0.0.1:3000/panier/` + id_salle);
-// }
-
-// function GetTotal(id_utilisateur) {
-//     return axios.get(`http://127.0.0.1:3000/panier/total/` + id_utilisateur);
-// }
 export default {
     GetProduitByFormeId
-    // DeletePanier,
-    // GetTotal
-}
+};

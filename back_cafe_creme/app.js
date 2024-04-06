@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const port = 3000;
+const port = process.env.PORT;
 //Services
-const { checkTokenMiddleware } = require('./Services/uti')
+const { checkTokenMiddleware } = require('./Services/middleware')
 //Modules
 const login = require('./Modules/utilisateurModule')
 const produit = require('./Modules/produitModule');
@@ -21,10 +22,6 @@ app.get('/', (req, res) => {
     res.send("Hello Café Crème")
 })
 
-// app.post('/utilisateur/inscription', login.inscription);
-// app.post('/utilisateur/connexion', checkTokenMiddleware, login.connexion);
-// app.post("/produit", adminService)
-
 app.use("/utilisateur", login)
 app.use("/produit", produit);
 app.use("/forme", forme);
@@ -37,3 +34,27 @@ app.use("/saveurs", saveurs)
 app.listen(port, () => {
     console.log(`L'application est à l'écoute sur le port https://127.0.0.1:${port}/ !`);
 });
+
+
+
+// require('dotenv').config();
+// const express = require('express');
+// const app = express();
+// const cors = require('cors');
+// const port = process.env.PORT;
+// //Modules
+// const produit = require('./Modules/produitModule');
+
+// app.use(express.json());
+// app.use(cors());
+
+// app.get('/', (req, res) => {
+//     res.send("Hello Café Crème")
+// })
+
+// app.use("/produit", produit);
+
+// app.listen(port, () => {
+//     console.log(`L'application est à l'écoute sur le port https://127.0.0.1:${port}/ !`);
+// });
+

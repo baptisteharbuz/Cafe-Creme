@@ -7,35 +7,34 @@
     width: 100vw;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+
+    .logo-login {
+        @include center;
+
+        img {
+            width: 30vw
+        }
+    }
 }
 
-.logo-login {
-    @include center;
-}
 
-.logo-login img {
-    width: 30vw
-}
-
-.card-inscription-container,
-.card-connexion-container {
+.card-register-container,
+.card-login-container {
     // background-color: #240E00;
     // box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     background: rgba(36, 14, 0, 0.507);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-
-
     box-shadow: rgba(0, 0, 0, 0.307) 0px 50px 100px -20px, rgba(0, 0, 0, 0.318) 0px 30px 60px -30px, rgba(0, 0, 0, 0.172) 0px -2px 6px 0px inset;
     @include center;
 }
 
-.card-connexion-container {
+.card-login-container {
     grid-column: 2;
 }
 
-.card-inscription-container {
+.card-register-container {
     grid-column: 1;
 }
 
@@ -45,16 +44,17 @@
     width: 40vw;
     @include center;
     flex-direction: column;
+
+    .button-login {
+        @include beige-border;
+        font-weight: 900;
+        border-radius: 10vw;
+        width: 10rem;
+        height: 2rem;
+        margin: 0.5rem;
+    }
 }
 
-.button-login {
-    @include beige-border;
-    font-weight: 900;
-    border-radius: 10vw;
-    width: 10rem;
-    height: 2rem;
-    margin: 0.5rem;
-}
 
 form {
     @include center;
@@ -129,8 +129,8 @@ input:hover {
         display: none;
     }
 
-    .card-inscription-container,
-    .card-connexion-container {
+    .card-register-container,
+    .card-login-container {
         position: relative;
         background-color: #240E00;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -153,12 +153,11 @@ input:hover {
         mix-blend-mode: hard-light
     }
 
-    .card-connexion-container {}
+    .card-login-container {}
 
-    .card-inscription-container {}
+    .card-register-container {}
 
     input {
-        // width: 160%;
         z-index: 1;
     }
 

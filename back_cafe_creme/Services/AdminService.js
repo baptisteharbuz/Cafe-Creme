@@ -12,21 +12,22 @@ const ajouterProduit = (produit) => {
                 produit.PR_Preparation, produit.PR_Resume, produit.PR_Robusta, produit.PR_Arabica,
                 produit.PR_Certification, produit.PR_Prix, produit.PA_Id, produit.FO_Id, produit.IN_Id
             ], (err, result) => {
+                //Gestion des erreurs
                 if (err) {
                     conn.rollback(() => reject(err));
                     return;
                 }
-
+                // Récupération de l'id du nouveau produit
                 const newProductId = result.insertId;
 
                 const insertAssociations = async () => {
-
-                    // Insérer les nouveaux arômes
+                    // Insértion des arômes
                     if (produit.aromesChoisis && produit.aromesChoisis.length) {
-                        const sqlArome = `INSERT INTO Posseder (PR_Id, AR_Id) VALUES ?`;
+                        const sqlArome = `INSERT INTO Produit_Arome_ (PR_Id, AR_Id) VALUES ?`;
                         const aromeValues = produit.aromesChoisis.map(aromeId => [newProductId, aromeId]);
                         await new Promise((resolve, reject) => {
                             conn.query(sqlArome, [aromeValues], (err, result) => {
+                                //Gestion des erreurs
                                 if (err) {
                                     conn.rollback(() => reject(err));
                                     return;
@@ -35,13 +36,13 @@ const ajouterProduit = (produit) => {
                             });
                         });
                     }
-
-                    // Insérer les nouveaux saveurs
+                    // Insérsion des saveurs
                     if (produit.saveursChoisis && produit.saveursChoisis.length) {
-                        const sqlSaveur = `INSERT INTO Renfermer (PR_Id, SA_Id) VALUES ?`;
+                        const sqlSaveur = `INSERT INTO Produit_Saveur_ (PR_Id, SA_Id) VALUES ?`;
                         const saveurValues = produit.saveursChoisis.map(saveurId => [newProductId, saveurId]);
                         await new Promise((resolve, reject) => {
                             conn.query(sqlSaveur, [saveurValues], (err, result) => {
+                                //Gestion des erreurs
                                 if (err) {
                                     conn.rollback(() => reject(err));
                                     return;
@@ -51,7 +52,6 @@ const ajouterProduit = (produit) => {
                         });
                     }
                 };
-
                 insertAssociations().then(() => {
                     conn.commit(err => {
                         if (err) {
@@ -94,13 +94,13 @@ const modifierProduit = (id, produit) => {
                     // Supprimer les associations existantes
                     await Promise.all([
                         new Promise((resolve, reject) => {
-                            conn.query(`DELETE FROM Posseder WHERE PR_Id = ?`, [id], (err, result) => {
+                            conn.query(`DELETE FROM Produit_Arome_ WHERE PR_Id = ?`, [id], (err, result) => {
                                 if (err) reject(err);
                                 else resolve(result);
                             });
                         }),
                         new Promise((resolve, reject) => {
-                            conn.query(`DELETE FROM Renfermer WHERE PR_Id = ?`, [id], (err, result) => {
+                            conn.query(`DELETE FROM Produit_Saveur_ WHERE PR_Id = ?`, [id], (err, result) => {
                                 if (err) reject(err);
                                 else resolve(result);
                             });
@@ -109,7 +109,7 @@ const modifierProduit = (id, produit) => {
 
                     // Insérer les nouveaux arômes
                     if (produit.aromesChoisis && produit.aromesChoisis.length) {
-                        const sqlArome = `INSERT INTO Posseder (PR_Id, AR_Id) VALUES ?`;
+                        const sqlArome = `INSERT INTO Produit_Arome_ (PR_Id, AR_Id) VALUES ?`;
                         const aromeValues = produit.aromesChoisis.map(aromeId => [id, aromeId]);
                         await new Promise((resolve, reject) => {
                             conn.query(sqlArome, [aromeValues], (err, result) => {
@@ -124,7 +124,7 @@ const modifierProduit = (id, produit) => {
 
                     // Insérer les nouvelles saveurs
                     if (produit.saveursChoisis && produit.saveursChoisis.length) {
-                        const sqlSaveur = `INSERT INTO Renfermer (PR_Id, SA_Id) VALUES ?`;
+                        const sqlSaveur = `INSERT INTO Produit_Saveur_ (PR_Id, SA_Id) VALUES ?`;
                         const saveurValues = produit.saveursChoisis.map(saveurId => [id, saveurId]);
                         await new Promise((resolve, reject) => {
                             conn.query(sqlSaveur, [saveurValues], (err, result) => {
@@ -157,17 +157,17 @@ const supprimerProduit = (id) => {
         conn.beginTransaction(err => {
             if (err) { reject(err); return; }
 
-            // Supprimer les données de la table Posseder
-            const deletePosseder = `DELETE FROM Posseder WHERE PR_Id = ?`;
-            conn.query(deletePosseder, [id], (err, result) => {
+            // Supprimer les données de la table Produit_Arome_
+            const deleteProduitArome = `DELETE FROM Produit_Arome_ WHERE PR_Id = ?`;
+            conn.query(deleteProduitArome, [id], (err, result) => {
                 if (err) {
                     conn.rollback(() => reject(err));
                     return;
                 }
 
-                // Supprimer les données de la table Renfermer
-                const deleteRenfermer = `DELETE FROM Renfermer WHERE PR_Id = ?`;
-                conn.query(deleteRenfermer, [id], (err, result) => {
+                // Supprimer les données de la table Produit_Saveur_
+                const deleteProduitSaveur = `DELETE FROM Produit_Saveur_ WHERE PR_Id = ?`;
+                conn.query(deleteProduitSaveur, [id], (err, result) => {
                     if (err) {
                         conn.rollback(() => reject(err));
                         return;

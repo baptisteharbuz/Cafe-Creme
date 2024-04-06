@@ -15,13 +15,13 @@ const fetchProduitByFormeId = (id) => {
             "FROM " +
             "Produit P " +
             "JOIN " +
-            "Posseder PO ON P.PR_Id = PO.PR_Id " +
+            "Produit_Arome_ PO ON P.PR_Id = PO.PR_Id " +
             "JOIN " +
             "Arome A ON PO.AR_Id = A.AR_Id " +
             "JOIN " +
             "Arome_Categorie AC ON A.AC_Id = AC.AC_Id " +
             "JOIN " +
-            "Renfermer R ON P.PR_Id = R.PR_Id " +
+            "Produit_Saveur_ R ON P.PR_Id = R.PR_Id " +
             "JOIN " +
             "Saveur S ON R.SA_Id = S.SA_Id " +
             "JOIN " +

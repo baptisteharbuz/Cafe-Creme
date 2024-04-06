@@ -17,23 +17,26 @@ body {
     grid-template-columns: repeat(2, 1fr);
     align-content: center;
     margin-top: 5rem;
+
+    .h1-accueil {
+        grid-column: 1 / 2;
+        margin: auto;
+        color: #240E00;
+        font-weight: 800;
+        font-size: 4rem;
+        z-index: 2;
+    }
+
+    .img-accueil {
+        display: grid;
+        width: 35rem;
+        height: 35rem;
+        grid-column: 2 / 3;
+        margin: auto;
+        z-index: 2;
+    }
 }
 
-.h1-accueil {
-    grid-column: 1 / 2;
-    margin: auto;
-    color: #240E00;
-    font-weight: 800;
-    font-size: 4rem;
-}
-
-.img-accueil {
-    display: grid;
-    width: 35rem;
-    height: 35rem;
-    grid-column: 2 / 3;
-    margin: auto;
-}
 
 /* /////////////// Jeux */
 .jeux-container {
@@ -93,8 +96,6 @@ body {
     .jeux-container h1 {
         width: 20rem;
     }
-
-    .jeux-container {}
 
     .nos-cafe-container {
         margin-bottom: 5rem;

@@ -2,8 +2,9 @@
 
 .container-panier {
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     // padding: 7rem 0 5rem 0;
+
 
 }
 
@@ -46,19 +47,13 @@
 
 .panier-card-x {
     padding: 1rem;
+
+    .x {
+        width: 1.5rem;
+    }
 }
 
-.x {
-    width: 1.5rem;
-}
-
-
-
-
-
-.container-panier-total {
-    /* background-color: aqua; */
-}
+.container-panier-total {}
 
 .card-detail {
     /* display: flex;
@@ -66,9 +61,6 @@
     align-items: center;
     justify-content: center; */
 }
-
-
-
 
 .container-panier-vide {
     @include center;

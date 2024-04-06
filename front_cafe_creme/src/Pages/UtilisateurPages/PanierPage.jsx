@@ -7,7 +7,7 @@ import "../../Styles/UtilisateurStyles/PanierStyle.scss";
 import { usePanier } from "../../Context/PanierContext"
 
 const Panier = () => {
-  const { user, isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
   const { panierItems } = usePanier();
 
@@ -51,7 +51,7 @@ const Panier = () => {
         ) : (
           <div className="container-panier-non-connecte">
             <p>Veuillez vous connecter pour voir votre panier.</p>
-            <button className="connexion-button" onClick={() => navigate('/connexion')}>Se connecter</button>
+            <button className="login-button" onClick={() => navigate('/login')}>Se connecter</button>
           </div>
         )}
       </div>

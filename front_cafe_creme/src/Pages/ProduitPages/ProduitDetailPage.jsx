@@ -22,11 +22,13 @@ const Produit = () => {
   const { ajouterAuPanier } = usePanier();
   const [produit, setProduit] = useState({});
   const [isModifierModalOpen, setIsModifierModalOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(user.UT_IsAdmin);
+
   useEffect(() => {
     const fetchProduit = async () => {
       try {
         const response = await Produitservice.GetProduitById(id);
-        setProduit(response.data);
+        setProduit(response);
       } catch (e) {
         console.log(e);
       }
@@ -106,9 +108,12 @@ const Produit = () => {
 
           </div>
         </div>
-        <div className="container-button-modifier">
-          <button onClick={() => setIsModifierModalOpen(true)}>Modifier l'article</button>
-        </div>
+        {isAdmin && (
+          <div className="container-button-modifier">
+            <button onClick={() => setIsModifierModalOpen(true)}>Modifier l'article</button>
+            {/* <button onClick={() => deleteProduit}>Supprimer</button> */}
+          </div>
+        )}
         <div className="image-separateur">
           <h2 className="txt-son-histoire">SON HISTOIRE</h2>
         </div>

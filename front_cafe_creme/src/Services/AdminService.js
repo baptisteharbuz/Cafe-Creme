@@ -1,28 +1,36 @@
-import axios from 'axios';
+import axios from '../Services/AxiosConfig';
 
-// function getProduits() {
-//     return axios.get(`http://127.0.0.1:3000/produit/`);
-// }
+const ajouterProduit = async (produit) => {
+    try {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/admin/`, produit);
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de l’ajout du produit', error);
+        throw error;
+    }
+};
 
-// function getProduitById(id) {
-//     return axios.get(`http://127.0.0.1:3000/produit/${id}`);
-// }
+const modifierProduit = async (id, produit) => {
+    try {
+        const response = await axios.put(`${process.env.REACT_APP_API_URL}/admin/${id}`, produit);
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de la modification du produit', error);
+        throw error;
+    }
+};
 
-function ajouterProduit(produit) {
-    return axios.post(`http://127.0.0.1:3000/admin/`, produit);
-}
-
-function modifierProduit(id, produit) {
-    return axios.put(`http://127.0.0.1:3000/admin/${id}`, produit);
-}
-
-function supprimerProduit(id) {
-    return axios.delete(`http://127.0.0.1:3000/admin/${id}`);
-}
+const supprimerProduit = async (id) => {
+    try {
+        const response = await axios.delete(`${process.env.REACT_APP_API_URL}/admin/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de la suppression du produit', error);
+        throw error;
+    }
+};
 
 export default {
-    // getProduits,
-    // getProduitById,
     ajouterProduit,
     modifierProduit,
     supprimerProduit

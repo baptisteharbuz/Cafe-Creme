@@ -1,40 +1,76 @@
-import axios from 'axios';
+import axios from '../Services/AxiosConfig';
 
-function GetProduit() {
-    return axios.get(`http://127.0.0.1:3000/produit/`);
-}
 
-function GetNewProduit() {
-    return axios.get(`http://127.0.0.1:3000/produit/nouveau`);
-}
+const GetProduit = async () => {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/produit/`);
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des produits', error);
+        throw error;
+    }
+};
 
-function GetProduitById(id) {
-    return axios.get(`http://127.0.0.1:3000/produit/` + id);
-}
-function GetCafeResultat() {
-    return axios.get(`http://127.0.0.1:3000/cafetest/`);
-}
-function SubmitCafeTest(cafe) {
-    return axios.post(`http://127.0.0.1:3000/cafetest/`, cafe);
-}
 
-// function GetSalleByReservation(reservationData) {
-//     return axios.get(`http://127.0.0.1:3000/salle`, reservationData);
-// }
+const GetNewProduit = async () => {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/produit/nouveau`);
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des nouveaux produits', error);
+        throw error;
+    }
+};
 
-// function DeletePanier(id_salle) {
-//     return axios.delete(`http://127.0.0.1:3000/panier/` + id_salle);
-// }
+const GetProduitById = async (id) => {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/produit/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error(`Erreur lors de la récupération du produit ${id}`, error);
+        throw error;
+    }
+};
 
-// function GetTotal(id_utilisateur) {
-//     return axios.get(`http://127.0.0.1:3000/panier/total/` + id_utilisateur);
-// }
-function GetAromes() {
-    return axios.get(`http://127.0.0.1:3000/aromes`);
-}
-function GetSaveurs() {
-    return axios.get(`http://127.0.0.1:3000/saveurs`);
-}
+const GetCafeResultat = async () => {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/cafetest/`);
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des résultats du test café', error);
+        throw error;
+    }
+};
+
+const SubmitCafeTest = async (cafe) => {
+    try {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/cafetest/`, cafe);
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de la soumission du test café', error);
+        throw error;
+    }
+};
+
+const GetAromes = async () => {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/aromes`);
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des arômes', error);
+        throw error;
+    }
+};
+
+const GetSaveurs = async () => {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/saveurs`);
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des saveurs', error);
+        throw error;
+    }
+};
 
 export default {
     GetProduit,
@@ -44,4 +80,4 @@ export default {
     SubmitCafeTest,
     GetAromes,
     GetSaveurs
-}
+};

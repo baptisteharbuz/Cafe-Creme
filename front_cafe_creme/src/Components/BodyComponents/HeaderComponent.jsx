@@ -17,7 +17,7 @@ import "../../Styles/BodyStyles/HeaderStyle.scss";
 const Header = () => {
   const { isAuthenticated, isAdmin } = useContext(AuthContext);
   const { panierItems } = usePanier();
-  const userLinkDestination = isAuthenticated ? (isAdmin ? "/admin" : "/profil") : "/connexion";
+  const userLinkDestination = isAuthenticated ? (isAdmin ? "/admin" : "/profil") : "/login";
   const totalQuantite = panierItems.reduce((total, item) => total + item.PU_Quantite, 0);
 
 

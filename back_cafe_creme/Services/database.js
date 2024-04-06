@@ -1,19 +1,19 @@
+require('dotenv').config();
 const mysql = require("mysql");
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'baptiste',
-    password: 'Foreach59',
-    port: 8889,
-    database: 'Cafe_Creme'
+const login = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE
 })
 
-connection.connect((err) => {
+login.connect((err) => {
     if (err) {
         console.log(err.stack)
         return
     }
-    // console.log(connection.state)
-    console.log(connection.threadId)
+    console.log(login.threadId)
 })
 
-module.exports = connection
+module.exports = login

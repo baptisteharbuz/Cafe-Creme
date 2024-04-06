@@ -1,10 +1,12 @@
 const adminService = require("../Services/AdminService");
 const express = require("express")
 const router = express.Router()
+const { checkTokenMiddleware } = require('../Services/middleware')
 
+router.use(checkTokenMiddleware)
 
 router.post('/', async (req, res) => {
-    console.log(req.body)
+    console.log(req.body + "reqbody")
     try {
         const result = await adminService.ajouterProduit(req.body);
         res.status(200).json(result);
@@ -34,4 +36,4 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = router; 
