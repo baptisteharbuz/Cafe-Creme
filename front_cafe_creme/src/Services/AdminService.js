@@ -1,4 +1,5 @@
-import axios from '../Services/AxiosConfig';
+// import axios from '../Services/AxiosConfig';
+import axios from "axios";
 
 const ajouterProduit = async (produit) => {
     try {

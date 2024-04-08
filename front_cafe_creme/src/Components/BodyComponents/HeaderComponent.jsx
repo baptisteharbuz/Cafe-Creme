@@ -12,16 +12,16 @@ import TasseMarron from "../../Assets/Images/Logos/Tasse-cafe-marron.svg";
 import Grain from "../../Assets/Images/Logos/Grain-beige.svg";
 // STYLES
 import "../../Styles/BodyStyles/HeaderStyle.scss";
-
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const Header = () => {
   const { isAuthenticated, isAdmin } = useContext(AuthContext);
   const { panierItems } = usePanier();
-  const userLinkDestination = isAuthenticated ? (isAdmin ? "/admin" : "/profil") : "/login";
+  const userLinkDestination = isAuthenticated ? "/profil" : "/login";
   const totalQuantite = panierItems.reduce((total, item) => total + item.PU_Quantite, 0);
 
 
-
+  <FaMagnifyingGlass />
   return (
     <nav className="navbar">
       <div className="header-gauche">
@@ -32,7 +32,7 @@ const Header = () => {
           <li className="hide-accueil"><Link to="/accueil" aria-label="naviguer vers la page d'accueil">Accueil</Link></li>
           <li><Link to="/accueil" aria-label="naviguer vers la page d'accueil"><img className="logo-cafe-creme-beige" src={LogoBeige} alt="Logo Café Crème" /></Link></li>
           <li className="hide-accueil"><Link to="/cafetest" aria-label="Café Test">Café Test</Link></li>
-          <li><Link to="/cafetest" aria-label="Faire le test de café"><img className="logo-header-beige" src={Grain} alt="Faire le test de café" /></Link></li>
+          <li><Link to="/cafetest" aria-label="Faire le test de café"><FaMagnifyingGlass style={{ fontSize: '2rem' }} /></Link></li>
           <li className="hide-accueil"><Link to="/noscafes" aria-label="Découvrir nos cafés">Nos Cafés</Link></li>
           <li><Link to="/noscafes" aria-label="Découvrir nos cafés"><img className="logo-header-beige" src={Grain} alt="Faire le test de café" /></Link></li>
           <li>

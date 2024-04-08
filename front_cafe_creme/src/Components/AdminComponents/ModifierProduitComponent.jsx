@@ -6,22 +6,6 @@ import { toast } from "react-toastify";
 import "../../Styles/AdminStyles/ModifierProduitStyle.scss";
 
 const ModifierProduitComponent = ({ isOpen, onClose, produit }) => {
-    useEffect(() => {
-        if (isOpen) {
-            disableScroll();
-        } else {
-            enableScroll();
-        }
-    }, [isOpen, produit]);
-
-    const disableScroll = () => {
-        document.body.style.overflow = 'hidden';
-    };
-
-    const enableScroll = () => {
-        document.body.style.overflow = 'unset';
-    };
-
     const [dataBaseAromes, setDataBaseAromes] = useState([]);
     const [dataBaseSaveurs, setDataBaseSaveurs] = useState([]);
     const [image, setImage] = useState(produit.PR_Img || "");
@@ -44,7 +28,7 @@ const ModifierProduitComponent = ({ isOpen, onClose, produit }) => {
     const fetchAromes = async () => {
         try {
             const response = await ProduitService.GetAromes();
-            setDataBaseAromes(response.data);
+            setDataBaseAromes(response);
         } catch (e) {
             console.log(e);
         }
@@ -53,7 +37,7 @@ const ModifierProduitComponent = ({ isOpen, onClose, produit }) => {
     const fetchSaveurs = async () => {
         try {
             const response = await ProduitService.GetSaveurs();
-            setDataBaseSaveurs(response.data);
+            setDataBaseSaveurs(response);
         } catch (e) {
             console.log(e);
         }
@@ -152,10 +136,21 @@ const ModifierProduitComponent = ({ isOpen, onClose, produit }) => {
         fetchSaveurs();
         setAromesChoisis(produit?.aromes || []);
         setSaveursChoisis(produit?.saveurs || []);
-    }, [produit]);
+        if (onClose) {
+            enableScroll();
+        } else {
+            disableScroll();
+        }
+    }, [produit, isOpen, produit]);
 
+    const disableScroll = () => {
+        document.body.style.overflow = 'hidden';
+    };
 
-    console.log("Produit.arome " + produit.arome)
+    const enableScroll = () => {
+        document.body.style.overflow = 'unset';
+    };
+
     return (
         <Modal isOpen={isOpen} onRequestClose={onClose}
             className="modal-container"

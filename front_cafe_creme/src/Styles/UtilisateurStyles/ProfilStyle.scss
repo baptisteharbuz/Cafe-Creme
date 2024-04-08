@@ -7,7 +7,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    width: 100vw;
+    // width: 100vw;
     height: 100vh;
 
     h1 {
@@ -48,6 +48,7 @@
 
             input {
                 z-index: 1;
+                margin: 10px;
             }
 
             .button-password-change {
@@ -80,8 +81,6 @@
         margin: 0;
     }
 
-    .container-form-profil {}
-
     .containeur-card-profil {
         width: 20rem;
 
@@ -89,5 +88,4 @@
             width: 100%;
         }
     }
-
 }

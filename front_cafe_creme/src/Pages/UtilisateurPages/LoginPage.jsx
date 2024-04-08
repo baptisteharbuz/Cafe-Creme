@@ -33,8 +33,8 @@ const Login = () => {
       });
 
       if (response.access_token && response.isLoggedIn) {
-        // localStorage.setItem('token', response.access_token);
-        // localStorage.setItem('user', JSON.stringify(response.user));
+        localStorage.setItem('token', response.access_token);
+        localStorage.setItem('user', JSON.stringify(response.user));
         setIsAuthenticated(true);
         setUser(response.user);
         navigate("/accueil");

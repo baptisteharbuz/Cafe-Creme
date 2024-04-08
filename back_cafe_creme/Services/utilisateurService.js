@@ -1,5 +1,14 @@
 const conn = require('./database');
 
+const fetchUtilisateurByID = (id) => {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT * FROM Utilisateur WHERE UT_Id = ?;`;
+        conn.query(sql, [id], (err, result) => {
+            if (err) return reject(err);
+            resolve(result[0]);
+        });
+    });
+};
 ////////////////////////////////////////////////////////////////
 // CONNEXION
 const login = (user) => {
@@ -63,6 +72,7 @@ const modificationMotDePasse = async (id, nouveauMotDePasse) => {
 };
 
 module.exports = {
+    fetchUtilisateurByID,
     login,
     register,
     supprimer,

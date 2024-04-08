@@ -12,9 +12,11 @@ import LogoGrain from "../../Assets/Images/Logos/Grain-marron.svg";
 import Tasse from "../../Assets/Images/Logos/Tasse-cafe-beige.svg";
 // Style
 import "../../Styles/AdminStyles/NouveauProduitStyle.scss";
-
+// Component
 import ModifierProduitComponent from '../../Components/AdminComponents/ModifierProduitComponent';
-
+import ConfirmationSuppression from "../../Components/AdminComponents/ConfirmationSuppressionComponent";
+import Rain from "../../Components/GrainComponent";
+import AdminService from "../../Services/AdminService";
 
 const Produit = () => {
   const { id } = useParams();
@@ -23,19 +25,16 @@ const Produit = () => {
   const [produit, setProduit] = useState({});
   const [isModifierModalOpen, setIsModifierModalOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(user.UT_IsAdmin);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
-  useEffect(() => {
-    const fetchProduit = async () => {
-      try {
-        const response = await Produitservice.GetProduitById(id);
-        setProduit(response);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    fetchProduit();
-  }, [id]);
+  const fetchProduit = async () => {
+    try {
+      const response = await Produitservice.GetProduitById(id);
+      setProduit(response);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const AjoutAuPanier = () => {
     if (!user) {
@@ -56,6 +55,25 @@ const Produit = () => {
       toast.error("Erreur lors de l'ajout au panier.");
     }
   };
+
+  const handleSuppression = async () => {
+    setShowConfirmation(true);
+  };
+
+  const confirmSuppression = async () => {
+    try {
+      await AdminService.supprimerProduit(produit.PR_Id);
+      toast.success(`le produit ${produit.Nom} à bien été supprimé`);
+      // navigate("/login");
+    } catch (error) {
+      toast.error("Erreur lors de la suppression du produit.");
+    }
+  };
+
+  useEffect(() => {
+    fetchProduit();
+    setIsAdmin(user.UT_IsAdmin);
+  }, [id, user]);
 
   return (
     <>
@@ -111,7 +129,7 @@ const Produit = () => {
         {isAdmin && (
           <div className="container-button-modifier">
             <button onClick={() => setIsModifierModalOpen(true)}>Modifier l'article</button>
-            {/* <button onClick={() => deleteProduit}>Supprimer</button> */}
+            <button onClick={() => setShowConfirmation(true)}>Supprimer</button>
           </div>
         )}
         <div className="image-separateur">
@@ -128,7 +146,9 @@ const Produit = () => {
           <p>{produit.Resume}</p>
         </div>
       </div>
-
+      <ConfirmationSuppression isOpen={showConfirmation} onClose={() => setShowConfirmation(false)} onConfirm={confirmSuppression} produit={produit}>
+        <Rain count={150} />
+      </ConfirmationSuppression>
       {isModifierModalOpen && (
         <ModifierProduitComponent
           isOpen={isModifierModalOpen}

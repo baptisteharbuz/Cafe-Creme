@@ -41,12 +41,6 @@ const Profil = () => {
       toast.error("Veuillez entrer votre mot de passe actuel pour confirmer les modifications.");
       return;
     }
-
-    // Hachage du mot de passe avant l'envoi
-    const salt = bcrypt.genSaltSync(10);
-    const hashedPassword = await bcrypt.hash(utilisateur.actualPassword, salt);
-    setUtilisateur(prevState => ({ ...prevState, actualPassword: hashedPassword }));
-
     if (utilisateur.actualPassword !== user.UT_MotDePasse) {
       toast.error("Mot de passe incorrect.");
       return;
@@ -56,8 +50,9 @@ const Profil = () => {
       Prenom: prenom,
       Mail: mail,
     };
+
     try {
-      await LoginService.modifierUtilisateur(user.UT_Id, userData);
+      await LoginService.modifierUtilisateur(user.UT_Id, userData, utilisateur.actualPassword);
       toast.success("Votre profil a bien été modifié.");
 
       setUser(prevUser => ({
@@ -76,9 +71,11 @@ const Profil = () => {
     }
   };
 
+
   const handleDeconnexion = () => {
     setIsAuthenticated(false);
     resetPanier();
+    localStorage.removeItem('token');
     navigate("/login");
   };
 

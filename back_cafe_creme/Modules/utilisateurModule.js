@@ -123,7 +123,7 @@ router.delete("/:id_utilisateur", async (req, res) => {
 });
 
 ////////////////////////////////////////////////////////////////
-// MODIFICATIONS (Profil)
+// MODIFICATIONS(Profil)
 router.put("/modification/:id", async (req, res) => {
     try {
         const { id } = req.params;
@@ -136,7 +136,26 @@ router.put("/modification/:id", async (req, res) => {
         res.status(500).json({ message: "Une erreur est survenue" });
     }
 });
-
+// router.put("/modification/:id", async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         const { motDePasseActuel, ...userUpdates } = req.body;
+//         console.log(motDePasseActuel)
+//         const utilisateurActuel = await loginService.fetchUtilisateurByID(id);
+//         if (!utilisateurActuel) {
+//             return res.status(404).json({ message: "Utilisateur non trouvé" });
+//         }
+//         const motDePasseValide = await bcrypt.compare(motDePasseActuel, utilisateurActuel.mdp);
+//         if (!motDePasseValide) {
+//             return res.status(401).json({ message: "Mot de passe incorrect" });
+//         }
+//         await utilisateurService.modificationProfil(id, userUpdates);
+//         return res.status(200).json({ message: "Profil utilisateur mis à jour avec succès" });
+//     } catch (err) {
+//         console.error("Erreur lors de la mise à jour du profil :", err);
+//         return res.status(500).json({ message: "Une erreur est survenue" });
+//     }
+// });
 // router.put("/changerMotDePasse/:id", async (req, res) => {
 //     try {
 //         const { id } = req.params;

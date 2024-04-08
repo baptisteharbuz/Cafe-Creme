@@ -14,7 +14,6 @@ const Cafe = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin, setIsAdmin] = useState(user.UT_IsAdmin);
 
-
   const fetchProduit = async () => {
     try {
       const response = await ProduitService.GetProduit();
@@ -31,8 +30,8 @@ const Cafe = () => {
 
   useEffect(() => {
     fetchProduit();
-  }, []);
-
+    setIsAdmin(user.UT_IsAdmin);
+  }, [user]);
 
   return (
     <>
@@ -72,7 +71,6 @@ export default Cafe;
 
 
 
-
 // import React, { useEffect, useState } from "react";
 // import ProduitService from "../../Services/ProduitService";
 // import ProduitListComponent from "../../Components/ProduitsComponents/ProduitListComponent";
@@ -99,10 +97,10 @@ export default Cafe;
 //     <>
 //       <div className="container-nos-cafes">
 //           <div className="container-produit-list">
-//             {produitList.map((produit, index) => {
+//             {produitList.map((produit) => {
 //               return (
 //                 <ProduitListComponent
-//                   key={index}
+//                   key={produit.id}
 //                   {...produit} />);
 //             })}
 //           </div>

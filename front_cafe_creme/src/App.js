@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import AuthContext from '../src/Context/AuthContext';
 import { PanierProvider } from './Context/PanierContext';
-import './Services/AxiosConfig';
 // Components
 import Header from "./Components/BodyComponents/HeaderComponent";
 import Footer from "./Components/BodyComponents/FooterComponent";
@@ -15,18 +14,14 @@ import CafeTest from "./Pages/ProduitPages/CafeTestPage"
 import Login from "./Pages/UtilisateurPages/LoginPage";
 import Register from "./Pages/UtilisateurPages/RegisterPage";
 import Droits from "./Pages/DroitsPage"
-// import Admin from "./Pages/AdminPage";
 import Profil from "./Pages/UtilisateurPages/ProfilPage";
 import Panier from "./Pages/UtilisateurPages/PanierPage";
 import Premiere from "./Pages/PremierePage"
-// import CafeMoulu from "./Pages/CafeMouluPage";
-// import Capsule from "./Pages/CapsulePage";
 // Styles
 import 'react-toastify/dist/ReactToastify.css';
 import './Styles/BaseStyles/TexteStyle.scss'
 import ScrollToTop from "./Components/ScrollToTopComponent";
 import './Styles/BaseStyles/HoverStyle.scss'
-
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -40,7 +35,6 @@ function App() {
       setUser(user);
     }
   }, []);
-
 
   return (
     <>

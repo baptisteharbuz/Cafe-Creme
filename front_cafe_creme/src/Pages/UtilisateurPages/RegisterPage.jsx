@@ -33,9 +33,15 @@ const Login = () => {
       toast.error("Veuillez compléter le CAPTCHA.");
       return;
     }
+    const passwordRequire = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]|.*[!@#\$%\^&\*])(?=.{8,})/;
+    if (!passwordRequire.test(utilisateur.MotDePasse)) {
+      toast.error("Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.");
+      return;
+    }
+
     if (utilisateur.Nom && utilisateur.Prenom && utilisateur.Mail && utilisateur.MotDePasse) {
       try {
-        const res = await LoginService.register(utilisateur);
+        const response = await LoginService.register(utilisateur);
         setIsAuthenticated(true);
         setUser(utilisateur);
         toast.success(`Bonjour ${utilisateur.Prenom} !`);
