@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../Context/AuthContext";
 import { usePanier } from "../../Context/PanierContext"
@@ -15,13 +15,11 @@ import "../../Styles/BodyStyles/HeaderStyle.scss";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const Header = () => {
-  const { isAuthenticated, isAdmin } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
   const { panierItems } = usePanier();
   const userLinkDestination = isAuthenticated ? "/profil" : "/login";
   const totalQuantite = panierItems.reduce((total, item) => total + item.PU_Quantite, 0);
 
-
-  <FaMagnifyingGlass />
   return (
     <nav className="navbar">
       <div className="header-gauche">
@@ -32,7 +30,7 @@ const Header = () => {
           <li className="hide-accueil"><Link to="/accueil" aria-label="naviguer vers la page d'accueil">Accueil</Link></li>
           <li><Link to="/accueil" aria-label="naviguer vers la page d'accueil"><img className="logo-cafe-creme-beige" src={LogoBeige} alt="Logo Café Crème" /></Link></li>
           <li className="hide-accueil"><Link to="/cafetest" aria-label="Café Test">Café Test</Link></li>
-          <li><Link to="/cafetest" aria-label="Faire le test de café"><FaMagnifyingGlass style={{ fontSize: '2rem' }} /></Link></li>
+          <li><Link to="/cafetest" aria-label="Faire le test de café"><FaMagnifyingGlass className="logo-header-beige" style={{ fontSize: '2rem' }} /></Link></li>
           <li className="hide-accueil"><Link to="/noscafes" aria-label="Découvrir nos cafés">Nos Cafés</Link></li>
           <li><Link to="/noscafes" aria-label="Découvrir nos cafés"><img className="logo-header-beige" src={Grain} alt="Faire le test de café" /></Link></li>
           <li>

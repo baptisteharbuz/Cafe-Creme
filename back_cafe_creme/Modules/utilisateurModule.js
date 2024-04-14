@@ -36,7 +36,7 @@ router.post('/login', (req, res, next) => {
                             // Si les mots de passe correspondent, génération d'un token JWT
                             const token = jwt.sign({
                                 user: result[0]
-                            }, jwtSecret, { expiresIn: '3 hours' });
+                            }, jwtSecret, { expiresIn: '3h' });
                             res.json({
                                 access_token: token,
                                 user: result[0],
